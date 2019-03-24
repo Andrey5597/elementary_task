@@ -1,3 +1,6 @@
+help_message = 'This program checks if one envelope can be nested into another.'
+
+
 class Envelope:
 
     def __init__(self, width, height):
@@ -26,7 +29,8 @@ def comparison():
             c = float(input('Enter width of second envelope :'))
             d = float(input('Enter height of second envelope :'))
             if a <= 0 or b <= 0 or c <= 0 or d <= 0:
-                print('The side of envelope should not be negative. Enter correct value')
+                print('The side of envelope should not be negative. '
+                      'Enter correct value')
                 continue
         except ValueError:
             print('Incorrect format! You should pass numbers')
@@ -35,13 +39,14 @@ def comparison():
         first = Envelope(a, b)
         second = Envelope(c, d)
         if first < second:
-            print('First envelope can Value should be positivebe puted in second')
+            print('First envelope can be nested in second')
         elif second > first:
-            print('Second envelope can be puted in first')
+            print('Second envelope can be nested in first')
         else:
             print('It can not be done')
 
-        question = str(input('Do you want to continue?'))
+        question = str(input('Do you want to continue? '
+                             '(Type "Y" to continue or any key to exit)'))
         assertion = ['Yes', 'yes', 'y']
 
         if question not in assertion:
@@ -49,4 +54,5 @@ def comparison():
 
 
 if __name__ == '__main__':
+    print(help_message)
     comparison()

@@ -12,13 +12,14 @@ helpMessage = '''This program can work in two modes:
 
 
 def file_parser(path, mode):
+
     if mode == 3:
         f = open(path)
         count = 0
         for characters in f:
             count += characters.count(arguments[2])
         f.close()
-        return f'{count} matches found'
+        return'{} matches found'.format(count)
     else:
         f = open(path)
         s = f.read()
@@ -40,8 +41,8 @@ if __name__ == '__main__':
         if Path(file_path).is_file():
             print(file_parser(file_path, len(arguments)))
         else:
-            print("There is no such file in that directory", helpMessage)
-
+            print("There is no such file in that directory")
+            print(helpMessage)
     else:
         print("You have entered wrong number of parameters. You need to pass 2 or 3.")
         print(helpMessage)

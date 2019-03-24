@@ -5,7 +5,7 @@ board_height = 0
 
 description = '''This program can be used in two ways. 
                  1. Interactive input. Required to run the program without parameters. 
-                    After launch you will be asked to view the width and height of the chessboard. 
+                    After launch you will be asked to enter the width and height of the chessboard. 
                     After entering the board will be displayed. 
                  2. Run with parameters. To specify the parameters, enter the following command: 
                     'python3 chess.py --width w --height h'
@@ -33,7 +33,7 @@ def input_values(f_width, f_height):
                 continue
             break
         except ValueError:
-            print('Incorrect format!')
+            print('Incorrect format! You must enter prime positive number.')
             continue
     return f_width, f_height
 

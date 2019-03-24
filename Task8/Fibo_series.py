@@ -12,6 +12,7 @@ while True:
 
 
 def fibo():
+
     fib_1, fib_2 = 0, 1
     while True:
         yield fib_1
