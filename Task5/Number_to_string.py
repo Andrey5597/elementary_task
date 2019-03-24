@@ -1,3 +1,5 @@
+help_message = 'This program convert any number to string. Maximum value - decillion.'
+
 ones = {
     0: '', 1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'six',
     7: 'seven', 8: 'eight', 9: 'nine', 10: 'ten', 11: 'eleven', 12: 'twelve',
@@ -47,9 +49,10 @@ def _join(*args):
 
 
 if __name__ == '__main__':
+    print(help_message)
     while True:
         try:
-            number = int(input('Enter integer number:'))
+            number = int(input('Enter integer number: '))
         except ValueError:
             print('Incorrect Value!!! You must enter integer number!')
             continue
@@ -57,7 +60,5 @@ if __name__ == '__main__':
         answer = input('Do you want to pass another number? '
                        'Type "Y" to continue or any key to exit: ')
         answer_list = ['YES', 'Y', 'yes', 'y']
-        if answer in answer_list:
-            continue
-        else:
+        if answer not in answer_list:
             break
