@@ -1,3 +1,5 @@
+help_message = 'This program can show list of numbers which square less then entered value'
+
 while True:
         try:
             end_number = int(input("Enter the number of the ending of the list: "))
@@ -23,4 +25,5 @@ def create_list(sq_number):
 
 
 if __name__ == '__main__':
+    print(help_message)
     create_list(end_number)
