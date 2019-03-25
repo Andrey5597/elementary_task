@@ -17,7 +17,7 @@ def read_file(file):
 def peter():
     counter = 0
     for i in range(1, 1000000):
-        ticket = '{:0{}}'.format(i, 6)
+        ticket = '{:06}'.format(i)
         if sum(map(int, (ticket[0]+ticket[2]+ticket[4]))) == \
                 sum(map(int, (ticket[1]+ticket[3]+ticket[5]))):
             counter += 1
@@ -27,7 +27,7 @@ def peter():
 def moscow():
     counter = 0
     for i in range(1, 1000000):
-        ticket = '{:0{}}'.format(i, 6)
+        ticket = '{:06}'.format(i)
         if sum(map(int, ticket[:3])) == sum(map(int, ticket[3:])):
             counter += 1
     print(counter)
