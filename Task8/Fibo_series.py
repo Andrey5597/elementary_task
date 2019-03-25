@@ -1,14 +1,20 @@
-while True:
-        try:
-            start = int(input("Enter the number of the beginning of the list: "))
-            end = int(input("Enter the number of the ending of the list: "))
-            if start <= 0 or end <= 0:
-                print('Number should not be negative. Enter correct value')
+help_message = 'This program can build a list of Fibonacci ' \
+               'series elements which are within specified limits'
+
+
+def input_start_end():
+    while True:
+            try:
+                start = int(input("Enter the number of the beginning of the list: "))
+                end = int(input("Enter the number of the ending of the list: "))
+                if start <= 0 or end <= 0:
+                    print('Number should not be negative. Enter correct value')
+                    continue
+                break
+            except ValueError:
+                print('Incorrect format! You should pass integer numbers')
                 continue
-            break
-        except ValueError:
-            print('Incorrect format! You should pass numbers')
-            continue
+    return start, end
 
 
 def fibo():
@@ -35,4 +41,6 @@ def create_list(list_start, list_end):
 
 
 if __name__ == '__main__':
+    print(help_message)
+    start, end = input_start_end()
     create_list(start, end)
