@@ -1,6 +1,13 @@
 import math
 
 
+help_message = '''Here is a console program that performs the output of triangles 
+in descending order by their square. After adding each new triangle, 
+the program asks if you want to you add another one.
+If you answer “y” or “yes”, the program will ask you to enter data
+for one more triangle, otherwise it will display result in the console.
+'''
+
 class Triangle:
     def __init__(self, name, length_a, length_b, length_c):
         self.name = name
@@ -26,7 +33,7 @@ class Triangle:
                          (self.half_perimeter - self.length_c))
 
 
-if __name__ == '__main__':
+def create_triangle_table():
     triangle_table = []
     while True:
         print('Enter parameters of your triangle: ')
@@ -52,3 +59,8 @@ if __name__ == '__main__':
             print(f'{n + 1}. [Triangle {t.name}]: {round(t.square, 2)} cm')
     else:
         print("Table of triangles is empty.")
+
+
+if __name__ == '__main__':
+    print(help_message)
+    create_triangle_table()
