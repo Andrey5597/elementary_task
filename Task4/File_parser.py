@@ -34,8 +34,7 @@ def file_parser(path, mode):
             return "There are no such string. " + helpMessage
 
 
-if __name__ == '__main__':
-    file_path = ''
+def execution():
     if len(arguments) in (3, 4):
         file_path = arguments[1]
         if Path(file_path).is_file():
@@ -46,3 +45,7 @@ if __name__ == '__main__':
     else:
         print("You have entered wrong number of parameters. You need to pass 2 or 3.")
         print(helpMessage)
+
+
+if __name__ == '__main__':
+    execution()
