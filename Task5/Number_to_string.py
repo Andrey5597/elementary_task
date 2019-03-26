@@ -1,4 +1,4 @@
-help_message = 'This program convert any number to string. Maximum value - decillion.'
+help_message = 'This program convert any number to string. Maximum name of value - decillion.'
 
 ones = {
     0: '', 1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'six',
@@ -48,8 +48,7 @@ def _join(*args):
     return ' '.join(filter(bool, args))
 
 
-if __name__ == '__main__':
-    print(help_message)
+def input_number():
     while True:
         try:
             number = int(input('Enter integer number: '))
@@ -62,3 +61,8 @@ if __name__ == '__main__':
         answer_list = ['YES', 'Y', 'yes', 'y']
         if answer not in answer_list:
             break
+
+
+if __name__ == '__main__':
+    print(help_message)
+    input_number()
