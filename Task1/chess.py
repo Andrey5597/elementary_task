@@ -21,10 +21,11 @@ if args.width:
     board_width = args.width
 if args.height:
     board_height = args.height
+else:
+    print(description)
 
 
 def input_values(f_width, f_height):
-    print(description)
     while True:
         try:
             if f_height <= 0 or f_width <= 0:
@@ -44,20 +45,19 @@ class ChessBoard:
     def __init__(self, width, height):
         self.width = width
         self.height = height
-        self.print_board()
 
     def print_board(self):
         board = ""
         for item in range(1, self.height + 1):
             for elem in range(item, self.width + item):
                 if elem % 2 == 0:
-                    board += " "
+                    board += "  "
                 else:
-                    board += "*"
+                    board += "* "
             board += "\n"
         print(board[:-1])
 
 
 if __name__ == '__main__':
     board_width, board_height = input_values(board_width, board_height)
-    ChessBoard(board_width, board_height)
+    ChessBoard(board_width, board_height).print_board()
