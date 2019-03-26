@@ -1,5 +1,5 @@
 help_message = 'This program can count quantity of happy tickets in two ways' \
-               '("Moscow" and "Peter") You can specify the way by typing it ' \
+               '("Moscow" and "Peter"). You can specify the way by typing it ' \
                'in text file'
 
 
@@ -33,8 +33,7 @@ def moscow():
     print(counter)
 
 
-if __name__ == '__main__':
-    print(help_message)
+def input_file_name():
     path = input("Enter the name of the file: ")
     key = read_file(path)
     if key == 'Peter':
@@ -45,3 +44,8 @@ if __name__ == '__main__':
         print('You must enter the name of the file in which '
               'must be one of two keys: "Moscow" or "Peter". '
               'Please make that file and try again.')
+
+
+if __name__ == '__main__':
+    print(help_message)
+    input_file_name()
