@@ -21,7 +21,7 @@ def create_list(sq_number):
             number += 1
         else:
             break
-    print(sequence)
+    print(sequence[0:-1])
 
 
 if __name__ == '__main__':
