@@ -32,7 +32,6 @@ def parse_cmdline_args():
         board_width = args.wb
     if args.hb:
         board_height = args.hb
-        print(argparse.Namespace.__contains__)
     else:
         print(description)
     return board_width, board_height
@@ -40,16 +39,12 @@ def parse_cmdline_args():
 
 def input_values():
     while True:
-        try:
-            f_height = int(input("Enter the value of height of the board: "))
-            f_width = int(input("Enter the value of width of the board: "))
-            if f_height <= 0 or f_width <= 0:
-                print('Values should be prime positive number')
-                continue
-            break
-        except ValueError:
-            print('Incorrect format! You must enter prime positive number.')
+        f_height = int(input("Enter the value of height of the board: "))
+        f_width = int(input("Enter the value of width of the board: "))
+        if f_height <= 0 or f_width <= 0:
+            print('Values should be prime positive number')
             continue
+        break
     return f_width, f_height
 
 
@@ -67,7 +62,7 @@ class ChessBoard:
                 else:
                     board += "* "
             board += "\n"
-        print(board[:-1])
+        return board[:-1]
 
 
 def can_place_in_terminal_window(lines, columns, t_height, t_width):
@@ -78,22 +73,25 @@ def can_place_in_terminal_window(lines, columns, t_height, t_width):
 
 def main():
     board_width, board_height = parse_cmdline_args()
+    terminal_window_size = os.get_terminal_size()
+    t_window_width = terminal_window_size.columns
+    t_window_height = terminal_window_size.lines
     if board_height is None or board_width is None:
         while True:
             try:
                 board_width, board_height = input_values()
-                terminal_window_size = os.get_terminal_size()
-                t_window_width = terminal_window_size.columns
-                t_window_height = terminal_window_size.lines
-                can_place_in_terminal_window(board_height, board_width,
-                                             t_window_height, t_window_width)
+                if not can_place_in_terminal_window(board_height, board_width,
+                                                    t_window_height, t_window_width):
+                    print(f'Specified parameters exceed your console window size: '
+                          f'Max. params - height: {t_window_height} '
+                          f'width: {t_window_width}')
                 break
             except ValueError:
-                print(f'Specified parameters exceed your console window size: '
-                      f'Max. params - height: {t_window_height} '
-                      f'width: {t_window_width}')
+                print('Values should be prime positive number!')
                 continue
-    ChessBoard(board_width, board_height).print_board()
+
+    board = ChessBoard(board_width, board_height).print_board()
+    print(board)
 
 
 if __name__ == '__main__':
