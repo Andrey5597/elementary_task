@@ -19,17 +19,14 @@ description = '''
 
 
 def parse_cmdline_args():
-    board_width = None
     parser = argparse.ArgumentParser(usage="Task1 (Chess Board)")
     parser.add_argument("-wb", help="The width of the board. "
                                     "Must be prime positive number", type=int)
     parser.add_argument("-hb", help="The height of the board. "
                                     "Must be prime positive number", type=int)
     args = parser.parse_args()
-    if args.wb:
-        board_width = args.wb
-    if args.hb:
-        board_height = args.hb
+    if args.wb and args.hb:
+        board_width, board_height = args.wb, args.hb
     else:
         return None
     return board_width, board_height
@@ -37,13 +34,16 @@ def parse_cmdline_args():
 
 def input_values():
     while True:
-        f_height = int(input("Enter the value of height of the board: "))
-        f_width = int(input("Enter the value of width of the board: "))
-        if f_height <= 0 or f_width <= 0:
-            print('Values should be prime positive number')
+        try:
+            input_width = int(input("Enter the value of width of the board: "))
+            input_height = int(input("Enter the value of height of the board: "))
+            if input_height <= 0 or input_width <= 0:
+                print('Incorrect value! Values should be prime positive numbers')
+                continue
+            return input_width, input_height
+        except ValueError:
+            print('Incorrect value! Values should be prime positive numbers')
             continue
-        break
-    return f_height, f_width
 
 
 class ChessBoard:
@@ -51,26 +51,29 @@ class ChessBoard:
         self.width = width
         self.height = height
 
-    def print_board(self):
+    def create_board(self):
         board = ""
         for item in range(1, self.height + 1):
             for elem in range(item, self.width + item):
                 if elem % 2 == 0:
-                    board += "  "
+                    board += " "
                 else:
-                    board += "* "
+                    board += "*"
             board += "\n"
         return board[:-1]
 
 
-def can_place_in_terminal_window(lines, columns, t_height, t_width):
-    if lines > t_height or columns > t_width:
-        return False
-    return True
+def can_place_in_terminal_window(columns, lines, t_window_width,
+                                 t_window_height):
+    if not lines > t_window_height or columns > t_window_width:
+        return True
 
 
 def choose_mode():
     if parse_cmdline_args() is None:
+        board_width, board_height = input_values()
+    elif parse_cmdline_args()[0] <= 0 or parse_cmdline_args()[1] <= 0:
+        print('Incorrect value! Values should be prime positive numbers')
         board_width, board_height = input_values()
     else:
         board_width, board_height = parse_cmdline_args()
@@ -79,24 +82,21 @@ def choose_mode():
 
 def main():
     print(description)
+    terminal_window_size = os.get_terminal_size()
+    t_window_width = terminal_window_size.columns
+    t_window_height = terminal_window_size.lines
+    board_width, board_height = choose_mode()
     while True:
-        try:
-            board_height, board_width = choose_mode()
-            terminal_window_size = os.get_terminal_size()
-            t_window_width = terminal_window_size.columns
-            t_window_height = terminal_window_size.lines
-            if not can_place_in_terminal_window(board_height, board_width,
-                                                t_window_height, t_window_width):
-                print(f'Specified parameters exceed your console window size: '
-                      f'Max. params - height: {t_window_height} '
-                      f'width: {t_window_width}')
-                continue
-            break
-        except ValueError:
-            print('Values should be prime positive number!')
+        if not can_place_in_terminal_window(board_width, board_height,
+                                            t_window_width, t_window_height):
+            print(f'Specified parameters exceed your console window size: '
+                  f'Max. params - width: {t_window_width} '
+                  f'height: {t_window_height}')
+            board_width, board_height = input_values()
             continue
+        break
 
-    board = ChessBoard(board_width, board_height).print_board()
+    board = ChessBoard(board_width, board_height).create_board()
     print(board)
 
 
