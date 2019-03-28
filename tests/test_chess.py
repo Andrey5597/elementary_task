@@ -14,9 +14,8 @@ class TestChessBoard(TestCase):
         self.assertTrue(cb.can_place_in_terminal_window(*args))
 
     def test_can_place_in_terminal_window_false(self):
-
-        self.assertRaises(ValueError, cb.can_place_in_terminal_window,
-                          lines=5, columns=6, t_height=2, t_width=5)
+        args = [5, 6, 2, 5]
+        self.assertFalse(cb.can_place_in_terminal_window(*args))
 
     def test_constructor(self):
         board = ChessBoard(10, 15)
@@ -29,7 +28,6 @@ class TestChessBoard(TestCase):
                          '*   *   *   \n'
                          '  *   *   * \n'
                          '*   *   *   ')
-
 
 
 if __name__ == '__main__':
