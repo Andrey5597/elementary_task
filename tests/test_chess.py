@@ -23,6 +23,18 @@ class TestChessBoard(TestCase):
                          ' * * *\n'
                          '* * * ')
 
+    def test_parse_cmdline_args(self):
+        args = ('-wb', '3', '-hb', '7')
+        self.assertEqual(cb.parse_cmdline_args(args), (3, 7))
+
+    def test_parse_cmdline_args_0(self):
+        args = ()
+        self.assertIsNone(cb.parse_cmdline_args(args))
+
+    def test_choose_mode_1(self):
+        args = (6, 9)
+        self.assertEqual(cb.choose_mode(args), (6, 9))
+
 
 if __name__ == '__main__':
     unittest.main()

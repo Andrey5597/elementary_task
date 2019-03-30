@@ -18,13 +18,13 @@ description = '''
    '''
 
 
-def parse_cmdline_args():
+def parse_cmdline_args(*args):
     parser = argparse.ArgumentParser(usage="Task1 (Chess Board)")
     parser.add_argument("-wb", help="The width of the board. "
                                     "Must be prime positive number", type=int)
     parser.add_argument("-hb", help="The height of the board. "
                                     "Must be prime positive number", type=int)
-    args = parser.parse_args()
+    args = parser.parse_args(*args)
     if args.wb and args.hb:
         board_width, board_height = args.wb, args.hb
     else:
@@ -69,14 +69,14 @@ def can_place_in_terminal_window(columns, lines, t_window_width,
         return True
 
 
-def choose_mode():
-    if parse_cmdline_args() is None:
+def choose_mode(result_from_parser):
+    if result_from_parser is None:
         board_width, board_height = input_values()
-    elif parse_cmdline_args()[0] <= 0 or parse_cmdline_args()[1] <= 0:
+    elif result_from_parser[0] <= 0 or result_from_parser[1] <= 0:
         print('Incorrect value! Values should be prime positive numbers')
         board_width, board_height = input_values()
     else:
-        board_width, board_height = parse_cmdline_args()
+        board_width, board_height = result_from_parser
     return board_width, board_height
 
 
@@ -85,7 +85,8 @@ def main():
     terminal_window_size = os.get_terminal_size()
     t_window_width = terminal_window_size.columns
     t_window_height = terminal_window_size.lines
-    board_width, board_height = choose_mode()
+    result_from_parser = parse_cmdline_args()
+    board_width, board_height = choose_mode(result_from_parser)
     while True:
         if not can_place_in_terminal_window(board_width, board_height,
                                             t_window_width, t_window_height):
