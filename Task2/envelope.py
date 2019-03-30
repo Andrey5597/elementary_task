@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 help_message = 'This program checks if one envelope can be nested into another.'
 
 
@@ -53,6 +54,10 @@ def comparison():
             break
 
 
-if __name__ == '__main__':
+def main():
     print(help_message)
     comparison()
+
+
+if __name__ == '__main__':
+    main()
