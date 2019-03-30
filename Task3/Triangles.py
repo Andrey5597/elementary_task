@@ -1,3 +1,4 @@
+#!usr/bin/env python3
 import math
 
 
@@ -7,6 +8,7 @@ the program asks if you want to you add another one.
 If you answer “y” or “yes”, the program will ask you to enter data
 for one more triangle, otherwise it will display result in the console.
 '''
+
 
 class Triangle:
     def __init__(self, name, length_a, length_b, length_c):
