@@ -5,7 +5,7 @@ from unittest import TestCase
 from elemenrary_task.Task2.envelope import Envelope
 
 
-class TestChessBoard(TestCase):
+class TestEnvelope(TestCase):
 
     def test_constructor(self):
         envelope = Envelope(7, 8)
