@@ -5,9 +5,13 @@ arguments = sys.argv
 
 helpMessage = '''This program can work in two modes:
                 1. Search and count matches. 
-                        You need to enter 2 positional arguments: "file path"  "string for search and count"
+                        You need to enter 2 positional 
+                        arguments: "file path"  "string 
+                        for search and count"
                 2. Search and rewrite matches. 
-                        You need to enter 3 positional arguments: "file path" "string for search" "string for replace"
+                        You need to enter 3 positional 
+                        arguments: "file path" "string 
+                        for search" "string for replace"
                 '''
 
 
@@ -34,7 +38,7 @@ def file_parser(path, mode):
             return "There are no such string. " + helpMessage
 
 
-def execution():
+def main():
     if len(arguments) in (3, 4):
         file_path = arguments[1]
         if Path(file_path).is_file():
@@ -48,4 +52,4 @@ def execution():
 
 
 if __name__ == '__main__':
-    execution()
+    main()

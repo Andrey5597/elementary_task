@@ -6,6 +6,7 @@ from unittest import TestCase
 from elemenrary_task.Task1.chess import ChessBoard
 from unittest import mock
 
+
 class TestChessBoard(TestCase):
 
     def test_can_place_in_terminal_window_true(self):
