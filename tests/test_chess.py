@@ -4,7 +4,7 @@ from elemenrary_task.Task1 import chess as cb
 import unittest
 from unittest import TestCase
 from elemenrary_task.Task1.chess import ChessBoard
-
+from unittest import mock
 
 class TestChessBoard(TestCase):
 
@@ -34,6 +34,10 @@ class TestChessBoard(TestCase):
     def test_choose_mode_1(self):
         args = (6, 9)
         self.assertEqual(cb.choose_mode(args), (6, 9))
+
+    def test_input_values(self):
+        with mock.patch('builtins.input', return_value="2"):
+            self.assertEqual(cb.input_values(), (2, 2))
 
 
 if __name__ == '__main__':
