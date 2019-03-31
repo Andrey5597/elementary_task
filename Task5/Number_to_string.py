@@ -1,3 +1,4 @@
+#!usr/bin/env Python3
 help_message = 'This program convert any number to string. Maximum name of value - decillion.'
 
 ones = {
@@ -55,6 +56,13 @@ def input_number():
         except ValueError:
             print('Incorrect Value!!! You must enter integer number!')
             continue
+        return number
+
+
+def main():
+    print(help_message)
+    while True:
+        number = input_number()
         print(say_number(number))
         answer = input('Do you want to pass another number? '
                        'Type "Y" to continue or any key to exit: ')
@@ -64,5 +72,5 @@ def input_number():
 
 
 if __name__ == '__main__':
-    print(help_message)
-    input_number()
+    main()
+
