@@ -1,3 +1,5 @@
+#!usr/bin/env/python3
+
 help_message = 'This program can count quantity of happy tickets in two ways' \
                '("Moscow" and "Peter"). You can specify the way by typing it ' \
                'in text file'
@@ -21,7 +23,7 @@ def peter():
         if sum(map(int, (ticket[0]+ticket[2]+ticket[4]))) == \
                 sum(map(int, (ticket[1]+ticket[3]+ticket[5]))):
             counter += 1
-    print(counter)
+    return counter
 
 
 def moscow():
@@ -30,22 +32,30 @@ def moscow():
         ticket = '{:06}'.format(i)
         if sum(map(int, ticket[:3])) == sum(map(int, ticket[3:])):
             counter += 1
-    print(counter)
+    return counter
 
 
 def input_file_name():
     path = input("Enter the name of the file: ")
     key = read_file(path)
     if key == 'Peter':
-        peter()
+        return 'Peter'
     elif key == 'Moscow':
-        moscow()
+        return 'Moscow'
     else:
         print('You must enter the name of the file in which '
               'must be one of two keys: "Moscow" or "Peter". '
               'Please make that file and try again.')
 
 
-if __name__ == '__main__':
+def main():
     print(help_message)
-    input_file_name()
+    mode = input_file_name()
+    if mode == "Peter":
+        print(peter())
+    elif mode == "Moscow":
+        print(moscow())
+
+
+if __name__ == '__main__':
+    main()
