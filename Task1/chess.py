@@ -26,10 +26,8 @@ def parse_cmdline_args(*args):
                                     "Must be prime positive number", type=int)
     args = parser.parse_args(*args)
     if args.wb and args.hb:
-        board_width, board_height = args.wb, args.hb
-    else:
-        return None
-    return board_width, board_height
+        return args.wb, args.hb
+    return None
 
 
 def input_values():
