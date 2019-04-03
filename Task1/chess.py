@@ -71,7 +71,7 @@ class ChessBoard:
 
 def can_place_in_terminal_window(columns, lines, t_window_width,
                                  t_window_height):
-    if not lines > t_window_height or columns > t_window_width:
+    if lines < t_window_height and columns < t_window_width:
         return True
 
 
@@ -94,14 +94,13 @@ def main():
     result_from_parser = parse_cmdline_args()
     board_width, board_height = choose_mode(result_from_parser)
     while True:
-        if not can_place_in_terminal_window(board_width, board_height,
-                                            t_window_width, t_window_height):
-            print(f'Specified parameters exceed your console window size: '
-                  f'Max. params - width: {t_window_width} '
-                  f'height: {t_window_height}')
-            board_width, board_height = input_values()
-            continue
-        break
+        if can_place_in_terminal_window(board_width, board_height,
+                                        t_window_width, t_window_height):
+            break
+        print(f'Specified parameters exceed your console window size: '
+              f'Max. params - width: {t_window_width} '
+              f'height: {t_window_height}')
+        board_width, board_height = input_values()
 
     board = ChessBoard(board_width, board_height).create_board()
     print(board)
