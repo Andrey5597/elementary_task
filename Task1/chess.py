@@ -8,40 +8,48 @@ description = '''
 
 1. Interactive mode. Required to run the program without 
    parameters. After launch you will be asked to enter the 
-   width and height of the chessboard.  After entering the 
-   board will be displayed. This mode executes by default. 
+   width and height of the chessboard.  After entering 
+   in case of admissibility of the entered parameters the 
+   board will be displayed. This mode executes by default.
+   If you want to quit type 'q' instead of width value. 
 
 2. Run with parameters. To specify the parameters, enter 
-   the following command: python3 chess.py -wb width -hb height'
+   the following command: 'python3 chess.py -wb width -hb height'
    where "width" and "height" define size of the chessboard.
 
    '''
 
+error_message = 'Incorrect value! Values should be positive integers. ' \
+                    'Please try again. \n'
+
 
 def parse_cmdline_args(*args):
-    parser = argparse.ArgumentParser(usage="Task1 (Chess Board)")
+    parser = argparse.ArgumentParser(usage="Chess Board")
     parser.add_argument("-wb", help="The width of the board. "
-                                    "Must be prime positive number", type=int)
+                                    "Must be positive integers", type=int)
     parser.add_argument("-hb", help="The height of the board. "
-                                    "Must be prime positive number", type=int)
+                                    "Must be positive integers", type=int)
     args = parser.parse_args(*args)
     if args.wb and args.hb:
         return args.wb, args.hb
-    return None
 
 
 def input_values():
     while True:
         try:
-            input_width = int(input("Enter the value of width of the board: "))
-            input_height = int(input("Enter the value of height of the board: "))
-            if input_height <= 0 or input_width <= 0:
-                print('Incorrect value! Values should be prime positive numbers')
+            input_width = input("Enter the value of width of the board "
+                                "or type 'q' to exit: ")
+            if input_width == 'q':
+                exit()
+            input_height = input("Enter the value of height of the board: ")
+            value_1 = int(input_width)
+            value_2 = int(input_height)
+            if value_1 <= 0 or value_2 <= 0:
+                print(error_message)
                 continue
-            return input_width, input_height
+            return value_1, value_2
         except ValueError:
-            print('Incorrect value! Values should be prime positive numbers')
-            continue
+            print(error_message)
 
 
 class ChessBoard:
@@ -71,7 +79,7 @@ def choose_mode(result_from_parser):
     if result_from_parser is None:
         board_width, board_height = input_values()
     elif result_from_parser[0] <= 0 or result_from_parser[1] <= 0:
-        print('Incorrect value! Values should be prime positive numbers')
+        print(error_message)
         board_width, board_height = input_values()
     else:
         board_width, board_height = result_from_parser

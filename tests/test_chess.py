@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 from elemenrary_task.Task1 import chess as cb
 import unittest
 from unittest import TestCase
