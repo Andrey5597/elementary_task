@@ -19,8 +19,8 @@ description = '''
 
    '''
 
-error_message = 'Incorrect value! Values should be positive integers. ' \
-                    'Please try again. \n'
+error_message = '\n \033[31m Incorrect value! Values should be positive integers. ' \
+                    'Please try again.\033[0m \n'
 
 
 def parse_cmdline_args(*args):
@@ -71,7 +71,7 @@ class ChessBoard:
 
 def can_place_in_terminal_window(columns, lines, t_window_width,
                                  t_window_height):
-    if lines < t_window_height and columns < t_window_width:
+    if lines <= t_window_height and columns <= t_window_width:
         return True
 
 
@@ -97,9 +97,9 @@ def main():
         if can_place_in_terminal_window(board_width, board_height,
                                         t_window_width, t_window_height):
             break
-        print(f'Specified parameters exceed your console window size: '
+        print(f'\n \033[94m Specified parameters exceed your console window size: '
               f'Max. params - width: {t_window_width} '
-              f'height: {t_window_height}')
+              f'height: {t_window_height} \033[0m \n ')
         board_width, board_height = input_values()
 
     board = ChessBoard(board_width, board_height).create_board()
